@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Логикалық функциялар — Интерактивті тапсырмалар</title>
+    <style>
+        :root {
+            --primary: #4f46e5;
+            --primary-hover: #4338ca;
+            --bg: #f8fafc;
+            --card-bg: #ffffff;
+            --text: #1e293b;
+            --success: #16a34a;
+            --error: #dc2626;
+            --border: #e2e8f0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            background: linear-gradient(135deg, #6366f1, #4f46e5);
+            color: white;
+            padding: 30px 20px;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(79, 70, 229, 0.15);
+            margin-bottom: 30px;
+        }
+
+        header h1 {
+            margin: 0 0 10px 0;
+            font-size: 2rem;
+        }
+
+        .card {
+            background: var(--card-bg);
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            margin-bottom: 25px;
+            border: 1px solid var(--border);
+        }
+
+        h2 {
+            color: var(--primary);
+            border-bottom: 2px solid #eef2ff;
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+
+        .theory-box {
+            background-color: #eef2ff;
+            border-left: 4px solid var(--primary);
+            padding: 15px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+
+        th, td {
+            border: 1px solid var(--border);
+            padding: 12px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #f1f5f9;
+        }
+
+        input[type="number"], select {
+            width: 60px;
+            padding: 8px;
+            text-align: center;
+            border: 2px solid var(--border);
+            border-radius: 6px;
+            font-size: 1rem;
+            transition: all 0.2s;
+        }
+
+        input[type="number"]:focus, select:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .q-list {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 12px;
+        }
+
+        .q-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px;
+            background: #f8fafc;
+            border-radius: 8px;
+        }
+
+        .btn-check {
+            display: block;
+            width: 100%;
+            padding: 14px;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.2s;
+            margin-top: 20px;
+        }
+
+        .btn-check:hover {
+            background-color: var(--primary-hover);
+        }
+
+        .correct {
+            border-color: var(--success) !important;
+            background-color: #dcfce7 !important;
+            color: var(--success);
+        }
+
+        .incorrect {
+            border-color: var(--error) !important;
+            background-color: #fee2e2 !important;
+            color: var(--error);
+        }
+
+        .result-box {
+            display: none;
+            text-align: center;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .options label {
+            display: block;
+            margin: 8px 0;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>Логикалық функциялар және ақиқат кестелері</h1>
+        <p>Интерактивті оқу жұмыс парағы</p>
+    </header>
+
+    <!-- 1. Ақиқат кестелері -->
+    <div class="card">
+        <h2>1. Логикалық амалдар және ақиқат кестелері</h2>
+        
+        <h3>1.1 Инверсия (NOT / Логикалық ТЕРІСТЕУ)</h3>
+        <table>
+            <tr><th>A</th><th>NOT A</th></tr>
+            <tr><td>0</td><td><input type="number" id="not_0" min="0" max="1"></td></tr>
+            <tr><td>1</td><td><input type="number" id="not_1" min="0" max="1"></td></tr>
+        </table>
+
+        <h3>1.2 Конъюнкция (AND / Логикалық КӨБЕЙТУ)</h3>
+        <table>
+            <tr><th>A</th><th>B</th><th>A AND B</th></tr>
+            <tr><td>0</td><td>0</td><td><input type="number" id="and_00" min="0" max="1"></td></tr>
+            <tr><td>0</td><td>1</td><td><input type="number" id="and_01" min="0" max="1"></td></tr>
+            <tr><td>1</td><td>0</td><td><input type="number" id="and_10" min="0" max="1"></td></tr>
+            <tr><td>1</td><td>1</td><td><input type="number" id="and_11" min="0" max="1"></td></tr>
+        </table>
+
+        <h3>1.3 Дизъюнкция (OR / Логикалық ҚОСУ)</h3>
+        <table>
+            <tr><th>A</th><th>B</th><th>A OR B</th></tr>
+            <tr><td>0</td><td>0</td><td><input type="number" id="or_00" min="0" max="1"></td></tr>
+            <tr><td>0</td><td>1</td><td><input type="number" id="or_01" min="0" max="1"></td></tr>
+            <tr><td>1</td><td>0</td><td><input type="number" id="or_10" min="0" max="1"></td></tr>
+            <tr><td>1</td><td>1</td><td><input type="number" id="or_11" min="0" max="1"></td></tr>
+        </table>
+
+        <h3>Тексеру сұрағы:</h3>
+        <p>Егер <b>A = 1</b> және <b>B = 0</b> болса, қай амалдың нәтижесі <b>0-ге</b> тең болады?</p>
+        <div class="options">
+            <label><input type="radio" name="q_check" value="A"> A) A OR B</label>
+            <label><input type="radio" name="q_check" value="B"> B) NOT B</label>
+            <label><input type="radio" name="q_check" value="C"> C) A AND B</label>
+        </div>
+    </div>
+
+    <!-- 2. Логикалық өрнектер -->
+    <div class="card">
+        <h2>2. Логикалық өрнектердің мәнін анықтау</h2>
+        <div class="theory-box">
+            <b>Орындалу тәртібі:</b> 1. Жақшалар ➔ 2. Инверсия (NOT) ➔ 3. Конъюнкция (AND) ➔ 4. Дизъюнкция (OR)
+        </div>
+        <div class="q-list">
+            <div class="q-item"><span>1. 1 Және 1 Немесе 0</span> <input type="number" id="expr_1" min="0" max="1"></div>
+            <div class="q-item"><span>2. Емес (0 Немесе 1)</span> <input type="number" id="expr_2" min="0" max="1"></div>
+            <div class="q-item"><span>3. (1 Немесе 0) Және (0 Немесе 0)</span> <input type="number" id="expr_3" min="0" max="1"></div>
+            <div class="q-item"><span>4. Емес 1 Және (1 Немесе 0)</span> <input type="number" id="expr_4" min="0" max="1"></div>
+            <div class="q-item"><span>5. (Емес 0 Және 1) Немесе 0</span> <input type="number" id="expr_5" min="0" max="1"></div>
+            <div class="q-item"><span>6. 1 Және Емес (1 Және 0)</span> <input type="number" id="expr_6" min="0" max="1"></div>
+            <div class="q-item"><span>7. (Емес 1 Немесе Емес 0) Және 1</span> <input type="number" id="expr_7" min="0" max="1"></div>
+            <div class="q-item"><span>8. 0 Немесе (1 Және (Емес 1 Немесе 1))</span> <input type="number" id="expr_8" min="0" max="1"></div>
+            <div class="q-item"><span>9. Емес (Емес 0 Және (0 Немесе 1))</span> <input type="number" id="expr_9" min="0" max="1"></div>
+            <div class="q-item"><span>10. ((1 Және 0) Немесе 1) Және Емес 0</span> <input type="number" id="expr_10" min="0" max="1"></div>
+        </div>
+
+        <h3>Күрделі тапсырма (Бонус)</h3>
+        <p>Өрнектің мәні 1-ге тең болуы үшін бос орынға қай амал қойылуы керек?</p>
+        <p><b>(1 <select id="bonus_op"><option value="">--</option><option value="AND">Және</option><option value="OR">Немесе</option></select> 0) Немесе (0 Және 1) = 1</b></p>
+    </div>
+
+    <!-- 3. Логикалық формулалар -->
+    <div class="card">
+        <h2>3. Логикалық функцияларды құрастыру</h2>
+        
+        <p><b>1-жағдай: Компьютерлік ойын</b><br>
+        Ойыншы келесі деңгейге өтеді, егер ол 100 ұпай жинаса <b>ЖӘНЕ</b> оның сиқырлы кілті болса.</p>
+        <select id="sc_1">
+            <option value="">Формуланы таңдаңыз</option>
+            <option value="A AND B">F = A ∧ B (А ЖӘНЕ В)</option>
+            <option value="A OR B">F = A ∨ B (А НЕМЕСЕ В)</option>
+            <option value="NOT A AND B">F = ¬A ∧ B (ЕМЕС А ЖӘНЕ В)</option>
+        </select>
+
+        <p style="margin-top: 15px;"><b>2-жағдай: Кітапхана ережесі</b><br>
+        Оқушы кітапханадан кітап ала алады, егер оның оқырман билеті болса (A) <b>ЖӘНЕ</b> берешегі болмаса (NOT B).</p>
+        <select id="sc_2">
+            <option value="">Формуланы таңдаңыз</option>
+            <option value="A AND B">F = A ∧ B</option>
+            <option value="A AND NOT B">F = A ∧ ¬B (А ЖӘНЕ ЕМЕС В)</option>
+            <option value="A OR NOT B">F = A ∨ ¬B</option>
+        </select>
+
+        <p style="margin-top: 15px;"><b>3-жағдай: Үй тапсырмасы</b><br>
+        Бала далаға ойнауға шығады, егер ол үй тапсырмасын орындап қойса (A) <b>НЕМЕСЕ</b> ата-анасы рұқсат берсе (B).</p>
+        <select id="sc_3">
+            <option value="">Формуланы таңдаңыз</option>
+            <option value="A AND B">F = A ∧ B</option>
+            <option value="A OR B">F = A ∨ B (А НЕМЕСЕ В)</option>
+            <option value="NOT A OR B">F = ¬A ∨ B</option>
+        </select>
+    </div>
+
+    <button class="btn-check" onclick="checkAnswers()">Барлық тапсырманы тексеру</button>
+    
+    <div id="resultBox" class="result-box"></div>
+</div>
+
+<script>
+    function checkAnswers() {
+        let totalScore = 0;
+        let maxScore = 0;
+
+        // Дұрыс жауаптар кілті
+        const answers = {
+            // Кестелер
+            not_0: 1, not_1: 0,
+            and_00: 0, and_01: 0, and_10: 0, and_11: 1,
+            or_00: 0, or_01: 1, or_10: 1, or_11: 1,
+            
+            // Өрнектер
+            expr_1: 1,
+            expr_2: 0,
+            expr_3: 0,
+            expr_4: 0,
+            expr_5: 1,
+            expr_6: 1,
+            expr_7: 1,
+            expr_8: 1,
+            expr_9: 0,
+            expr_10: 1,
+
+            // Бонус
+            bonus_op: "OR",
+
+            // Сценарийлер
+            sc_1: "A AND B",
+            sc_2: "A AND NOT B",
+            sc_3: "A OR B"
+        };
+
+        // Инпуттарды тексеру
+        for (let key in answers) {
+            maxScore++;
+            let el = document.getElementById(key);
+            let userVal = el ? el.value.trim() : null;
+
+            if (el) {
+                if (userVal == answers[key]) {
+                    el.classList.add('correct');
+                    el.classList.remove('incorrect');
+                    totalScore++;
+                } else {
+                    el.classList.add('incorrect');
+                    el.classList.remove('correct');
+                }
+            }
+        }
+
+        // Тексеру сұрағы (Radio)
+        maxScore++;
+        const radioQ = document.querySelector('input[name="q_check"]:checked');
+        if (radioQ && radioQ.value === "C") {
+            totalScore++;
+        }
+
+        // Нәтижені шығару
+        const resBox = document.getElementById('resultBox');
+        resBox.style.display = 'block';
+        
+        let percent = Math.round((totalScore / maxScore) * 100);
+        resBox.innerHTML = `Нәтижеңіз: ${totalScore} / ${maxScore} (${percent}%)`;
+        
+        if (percent >= 80) {
+            resBox.style.backgroundColor = '#dcfce7';
+            resBox.style.color = '#16a34a';
+        } else {
+            resBox.style.backgroundColor = '#fee2e2';
+            resBox.style.color = '#dc2626';
+        }
+
+        window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+    }
+</script>
+
+</body>
+</html>
