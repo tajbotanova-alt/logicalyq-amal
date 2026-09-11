@@ -1,2 +1,2 @@
 # logicalyq-amal
-Логикалық амалдармен жұмыс
+index.html
